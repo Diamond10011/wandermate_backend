@@ -1,0 +1,6 @@
+@wandermate_HostAddress = http://localhost:5223
+
+GET {{wandermate_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

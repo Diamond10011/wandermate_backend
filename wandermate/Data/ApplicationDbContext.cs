@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using wandermate.models;
+using Microsoft.AspNetCore.Identity;
+
+using wandermate.Models;
 
 namespace wandermate.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         //constructor
         public ApplicationDbContext(DbContextOptions dbContextoptions)
@@ -16,15 +19,11 @@ namespace wandermate.Data
         }
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<Test> Test { get; set; }
-        public DbSet<TravelPackage> TravelPackage { get; set; }
-        public DbSet<Destination> Destination { get; set; }
-        public DbSet<Review> Review { get; set; }
-        public DbSet<Users> Users { get; set; }
-        // public DbSet<HotelBooking> HotelBooking { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder Builder)
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(Builder);
+            base.OnModelCreating(builder);
 
             // Builder.Entity<HotelBooking>()
             // .HasOne(h => h.Hotel)
@@ -38,9 +37,15 @@ namespace wandermate.Data
             // .HasForeignKey(hi => hi.UsersId)
             // .OnDelete(DeleteBehavior.Restrict);
 
+            List<IdentityRole> roles = new()
+            {
+                new IdentityRole {Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole {Name = "User", NormalizedName = "USER" },
+            };
+            builder.Entity<IdentityRole>().HasData(roles);
+
 
         }
     }
-
 
 }

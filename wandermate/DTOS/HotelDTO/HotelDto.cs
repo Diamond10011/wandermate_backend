@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace wandermate.DTOS.HotelDTO
+namespace wandermate.DTOs.HotelDTO
 {
     public class HotelDto
     {

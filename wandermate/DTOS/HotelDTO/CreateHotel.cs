@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace wandermate.DTOS.HotelDTO
+namespace wandermate.DTOs.HotelDTO
 {
-    public class CreateHotel
+    public class CreateHotelDTO
     {
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace wandermate.models
+namespace wandermate.Models
 {
     [Table("Test")]
     public class Test

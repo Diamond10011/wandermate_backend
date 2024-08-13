@@ -24,8 +24,8 @@ namespace wandermate.Service
         public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>{
-                new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                new Claim(JwtRegisteredClaimNames.GivenName, user.UserName)
+                new(JwtRegisteredClaimNames.Email,user.Email),
+                new (JwtRegisteredClaimNames.GivenName, user.UserName)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

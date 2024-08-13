@@ -56,7 +56,7 @@ namespace wandermate.Controllers
         {
             try
             {
-                if (ModelState.IsValid) return BadRequest(ModelState);
+                if (!ModelState.IsValid) return BadRequest(ModelState);
                 var appUser = new AppUser
                 {
                     UserName = registerDto.Username,

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using wandermate.Data;
+using wandermate.Models;
 
 namespace wandermate.Controllers
 {
@@ -32,7 +33,7 @@ namespace wandermate.Controllers
             return Ok(teat);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] models.Test teat)
+        public async Task<IActionResult> Create([FromBody] Test teat)
         {
             if (teat == null)
             {
@@ -44,7 +45,7 @@ namespace wandermate.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] models.Test tp)
+        public IActionResult Update([FromRoute] int id, [FromBody] Test tp)
         {
             var data = _context.Test.Find(id);
             if (data == null)

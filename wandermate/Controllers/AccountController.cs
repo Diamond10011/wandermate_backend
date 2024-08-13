@@ -29,12 +29,13 @@ namespace wandermate.Controllers
             _tokenService = tokenService;
             _signinManager = signInManager;
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username);
             if (user == null) return Unauthorized("Invalid User Name");
 
             var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);

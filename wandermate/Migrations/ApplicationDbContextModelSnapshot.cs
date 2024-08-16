@@ -51,13 +51,13 @@ namespace wandermate.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d2e7adbf-587b-4aa6-89b3-bdbf013f2f2f",
+                            Id = "fd8ae16f-ee95-4618-816e-b0f71c874d4f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0c9ce8f7-f02c-449d-84c0-f21810aeee21",
+                            Id = "7a7875e1-b07f-4a6c-aacb-b8cb4585d910",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -270,6 +270,45 @@ namespace wandermate.Migrations
                     b.ToTable("Hotel");
                 });
 
+            modelBuilder.Entity("wandermate.Models.HotelBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Checkin")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Checkout")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HotelBooking");
+                });
+
             modelBuilder.Entity("wandermate.Models.Test", b =>
                 {
                     b.Property<int>("Id")
@@ -347,6 +386,35 @@ namespace wandermate.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("wandermate.Models.HotelBooking", b =>
+                {
+                    b.HasOne("wandermate.Models.Hotel", "Hotel")
+                        .WithMany("HotelBookings")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("wandermate.Models.AppUser", "AppUser")
+                        .WithMany("HotelBookings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("wandermate.Models.AppUser", b =>
+                {
+                    b.Navigation("HotelBookings");
+                });
+
+            modelBuilder.Entity("wandermate.Models.Hotel", b =>
+                {
+                    b.Navigation("HotelBookings");
                 });
 #pragma warning restore 612, 618
         }

@@ -123,3 +123,6 @@ C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\Microsoft.IdentityMod
 C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\MailKit.dll
+C:\Users\Admin\Desktop\backend\wandermate\bin\Debug\net8.0\MimeKit.dll

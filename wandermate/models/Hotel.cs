@@ -20,6 +20,8 @@ namespace wandermate.Models
         public int Rating { get; set; }
         public bool FreeCancellation { get; set; }
         public bool ReserveNow { get; set; }
+        public List<HotelBooking> HotelBookings { get; set; } = new List<HotelBooking>();
+
 
     }
 }

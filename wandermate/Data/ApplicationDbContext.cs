@@ -18,6 +18,7 @@ namespace wandermate.Data
         {
         }
         public DbSet<Hotel> Hotel { get; set; }
+        public DbSet<HotelBooking> HotelBooking { get; set; }
         public DbSet<Test> Test { get; set; }
 
 
@@ -25,17 +26,18 @@ namespace wandermate.Data
         {
             base.OnModelCreating(builder);
 
-            // Builder.Entity<HotelBooking>()
-            // .HasOne(h => h.Hotel)
-            // .WithMany(hb => hb.HotelBooking)
-            // .HasForeignKey(hi => hi.HotelId)
-            // .OnDelete(DeleteBehavior.Restrict);
+            // Configure many-to-many 
+            builder.Entity<HotelBooking>()
+                .HasOne(hb => hb.Hotel)
+                .WithMany(h => h.HotelBookings)
+                .HasForeignKey(hb => hb.HotelId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Builder.Entity<HotelBooking>()
-            // .HasOne(h => h.Users)
-            // .WithMany(hb => hb.HotelBooking)
-            // .HasForeignKey(hi => hi.UsersId)
-            // .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<HotelBooking>()
+                .HasOne(hb => hb.AppUser)
+                .WithMany(u => u.HotelBookings)
+                .HasForeignKey(hb => hb.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             List<IdentityRole> roles = new()
             {

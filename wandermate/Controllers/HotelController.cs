@@ -60,7 +60,7 @@ namespace wandermate.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateHotel([FromBody] CreateHotelDTO hotelDto)
+        public async Task<IActionResult> CreateHotel([FromBody] Hotel hotelDto)
         {
             if (!ModelState.IsValid)
             {
